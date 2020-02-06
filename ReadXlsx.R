@@ -1,4 +1,4 @@
-#I will use an xlsx file that has 2 columns, Date/Month/Price
+#I will use an xlsx file that has 3 columns, Date/Month/Price
 
 #We will use the library openxlsx
 library(openxlsx)
