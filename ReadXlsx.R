@@ -1,4 +1,4 @@
-#I will use an xlsx file that has 2 columns, Date/Price
+#I will use an xlsx file that has 2 columns, Date/Month/Price
 
 #We will use the library openxlsx
 library(openxlsx)
@@ -22,7 +22,7 @@ prc <- df1$Price
 
 time <- df1$Date
 
-#Then we made the linear regression model,  x ~ y
+#Then we made the linear regression model,  y ~ x
 lm.D1 <- lm(prc ~ time)
 
 #We can print a summary of our analysis, a plot of our data and
@@ -30,3 +30,22 @@ lm.D1 <- lm(prc ~ time)
 print(summary(lm.D1))
 plot(time, prc, pch = 16, xlab = " ", ylab = " ")
 abline(lm(prc ~ time), col = "red")
+
+#If we want to analyze our data by month ----------------------------------------------------------
+month <- df1$Month
+
+#Then again we make our linear regression y ~ x
+lm.D2 <- lm(prc ~ month)
+
+#We can print our summary and plot our data with the linear regression
+print(summary(lm.D2))
+plot(month, prc, pch = 16, xlab = " ", ylab = " ")
+abline(lm(prc ~ month), col = "red")
+
+#Then we can make a list of months
+by.mth <- list();
+by.mth[[1]] <- month
+
+#Apply the mean funtion to each month and plot it.
+mth.mean <- aggregate(prc, by = by.mth, FUN = mean)
+plot(mth.mean)
