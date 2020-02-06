@@ -18,8 +18,13 @@ df1$Date <- dts
 #make a linear regression model.
 
 prc <- df1$Price
+
 time <- df1$Date
+
 lm.D1 <- lm(prc ~ time)
-summary(lm.D1)
+
+print(summary(lm.D1))
+
 plot(time, prc, pch = 16, xlab = " ", ylab = " ")
+
 abline(lm(prc ~ time), col = "red")
