@@ -17,14 +17,16 @@ df1$Date <- dts
 #Now we have our data from xlsx to R, suppose that we want to
 #make a linear regression model.
 
+#So we save our column price in prc and the column date to time
 prc <- df1$Price
 
 time <- df1$Date
 
+#Then we made the linear regression model,  x ~ y
 lm.D1 <- lm(prc ~ time)
 
+#We can print a summary of our analysis, a plot of our data and
+#The regression line.
 print(summary(lm.D1))
-
 plot(time, prc, pch = 16, xlab = " ", ylab = " ")
-
 abline(lm(prc ~ time), col = "red")
