@@ -1,4 +1,4 @@
-#I will use an xlsx file that has 3 columns, Date/Month/Price
+#I will use an xlsx file that has 2 columns, Date/Price
 
 #We will use the library openxlsx
 library(openxlsx)
@@ -35,28 +35,3 @@ legend("topleft", c(paste("Coef. Ang = ", signif(lm.D1$coefficients[[2]], digits
         signif(summary(lm.D1)$coefficients[2,4], digits = 4))), cex = 0.8, box.lty = 0, bg = "transparent", box.lwd = 2)
 
 abline(lm(prc ~ time), col = "red")
-
-#If we want to analyze our data by month ----------------------------------------------------------
-month <- df1$Month
-
-#Then again we make our linear regression y ~ x
-lm.D2 <- lm(prc ~ month)
-
-#We can print our summary and plot our data with the linear regression
-print(summary(lm.D2))
-plot(month, prc, pch = 16, xlab = " ", ylab = " ")
-
-plot(month, prc, main = "Historical Prices by Month",pch = 16, xlab = "Month", ylab = "Inflation updated prices - R$", xaxt  = "n")
-axis(1, at = seq(1, 12, by = 1), las = 0)
-legend("topleft", c(paste("Coef. Ang = ", signif(lm.mth$coefficients[[2]], digits = 4)), paste("p-value = ", 
-        signif(summary(lm.mth)$coefficients[2,4], digits = 4))), cex = 0.8, box.lty = 0, bg = "transparent", box.lwd = 2)
-abline(lm(prc ~ month), col = "red")
-
-#Then we can make a list of months
-by.mth <- list();
-by.mth[[1]] <- month
-
-#Apply the mean funtion to each month and plot it.
-mth.mean <- aggregate(prc, by = by.mth, FUN = mean)
-plot(mth.mean, main = "Mean Month Prices", type = "o", xaxt = "n")
-axis(1, at = seq(1,12,by = 1), las = 0)
